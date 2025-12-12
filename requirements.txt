@@ -1,0 +1,20 @@
+alchemy @ https://github.com/nairobilug/pelican-alchemy/archive/master.zip#sha256=8cefb702ea8a91fde403c81cc923d05bf253424e7d1aa93e2515b22c31c0681a
+anyio==4.12.0
+blinker==1.9.0
+docutils==0.22.3
+feedgenerator==2.2.1
+idna==3.11
+Jinja2==3.1.6
+Markdown==3.10
+markdown-it-py==4.0.0
+MarkupSafe==3.0.3
+mdurl==0.1.2
+ordered-set==4.1.0
+pelican==4.11.0.post0
+Pygments==2.18.0
+python-dateutil==2.9.0.post0
+rich==14.2.0
+six==1.17.0
+tzdata==2025.2
+Unidecode==1.4.0
+watchfiles==1.1.1

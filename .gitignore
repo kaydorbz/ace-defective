@@ -1,0 +1,12 @@
+# --- Protocol: Security First ---
+.env
+secrets.json
+azure_credentials.json
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+output/
+cache/
+.vscode/
+.history/
