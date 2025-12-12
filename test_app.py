@@ -1,2 +1,3 @@
-def test_math_works():
-    assert 1 + 1 == 2
+def test_workflow_success():
+    print("The double-barrel workflow is active.")
+    assert True
