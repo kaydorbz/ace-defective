@@ -27,11 +27,12 @@ steps:
       pelican content -o output -s publishconf.py
     displayName: 'Install Dependencies & Build Site'
 
-  # 3. FIX: Deploy the Pre-Built Folder
+# 3. FIX: Deploy the Pre-Built Folder
   - task: AzureStaticWebApp@0
     inputs:
-      app_location: '/'
+      # Since we built it manually, the "App" is now just the output folder.
+      app_location: 'output' 
       api_location: ''
-      output_location: 'output' # <--- Matches the -o flag above
-      skip_app_build: true      # <--- CRITICAL: Tells Azure "Don't touch it, I already built it"
+      output_location: '' # Leave empty because app_location is already the build result
+      skip_app_build: true
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
