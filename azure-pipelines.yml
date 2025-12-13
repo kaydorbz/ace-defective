@@ -1,16 +1,37 @@
 trigger:
-- main
+  - main
 
 pool:
-  name: 'Default'  # This targets your local computer
+  vmImage: ubuntu-latest
+
+# Connects to the Variable Group we will create in Phase 1
+variables:
+  - group: AceDefective-Secrets
 
 steps:
-- script: |
-    echo "--- Setting up Python Environment ---"
-    python -m pip install --upgrade pip
-    pip install pytest
-    pip install -r requirements.txt
-    
-    echo "--- Running Tests ---"
-    pytest
-  displayName: 'Build and Test'
+  - checkout: self
+    submodules: true
+
+  # 1. FIX: Pin Python Version to ensure stability (prevents random breakages)
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.11'
+      addToPath: true
+    displayName: 'Set Python Version to 3.11'
+
+  # 2. FIX: Manual Build Script
+  # We install dependencies and run Pelican ourselves so we know it works.
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      pelican content -o output -s publishconf.py
+    displayName: 'Install Dependencies & Build Site'
+
+  # 3. FIX: Deploy the Pre-Built Folder
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: '/'
+      api_location: ''
+      output_location: 'output' # <--- Matches the -o flag above
+      skip_app_build: true      # <--- CRITICAL: Tells Azure "Don't touch it, I already built it"
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
