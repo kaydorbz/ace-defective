@@ -16,9 +16,9 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll - (Cleaned up default Pelican links)
-LINKS = (
-    ("Key2Pee (Project)", "#"),  # Placeholder until project page is ready
-)
+#LINKS = (
+#    ("Key2Pee (Project)", "#"),  # Placeholder until project page is ready
+#)
 
 # Social widget - (Updated for Patronage Model)
 SOCIAL = (
